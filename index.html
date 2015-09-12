@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Drag&amp; Drop</title>
+<style>
+#zona {
+   width:220px;
+   height:150px;
+   padding:10px;
+   background-color:gray;
+   border:black double 1px;	
+	}
+
+</style>
+<script>
+function permitir (e) {
+	//Permite mover el objeto y encimarlo con otros objetos HTML
+	e.preventDefault();
+}
+	function arrastrar(e){
+		//Almacenamos el identificador id del elemento que estamos arrastrando 
+	e.dataTransfer.setData("text",e.target.id);
+		
+		}
+		function drop(e){
+			//El Default consiste en qur no se ejecute como URL
+			e.preventDefault();
+			//Recuperar el id
+			var data = e.dataTransfer.getData("text");
+			//Añadimos la imagen
+			e.target.appendChild(document.getElementById(data) );
+			
+			}
+	
+
+
+</script>
+</head>
+
+<body>
+<p>Favor de arrastrar la imagen al cuadro</p>
+<div id="zona" ondrop="drop(event)" ondragover ="permitir(event)"></div>
+<br>
+<img id="imagen" src="imagenes/1.jpg" width="200" height="auto" draggable="true" ondragstart="arrastrar(event)"/>
+</body>
+</html>
